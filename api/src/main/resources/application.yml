@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: GymFlow
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/gymflow
+    username: gymflow
+    password: gymflow123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate  
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: 8080
+
+jwt:
+  secret: "CAMBIA_ESTO_POR_UNA_CLAVE_LARGA_Y_ALEATORIA_DE_AL_MENOS_32_CARACTERES"
+  access-token-expiration-ms: 900000      # 15 minutos
+  refresh-token-expiration-ms: 604800000  # 7 días
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
