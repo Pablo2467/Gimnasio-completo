@@ -1,5 +1,6 @@
 package com.gymflow.api.membership;
 
+import com.gymflow.api.audit.Auditable;
 import com.gymflow.api.common.exception.NotFoundException;
 import com.gymflow.api.member.Member;
 import com.gymflow.api.member.MemberService;
@@ -75,6 +76,7 @@ public class MembershipService {
         repository.save(membership);
     }
 
+    @Auditable(action = "CANCEL_MEMBERSHIP")
     public void cancel(Long membershipId) {
         Membership membership = getEntity(membershipId);
         membership.setStatus(MembershipStatus.CANCELLED);

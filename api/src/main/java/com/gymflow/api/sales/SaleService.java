@@ -1,5 +1,6 @@
 package com.gymflow.api.sales;
 
+import com.gymflow.api.audit.Auditable;
 import com.gymflow.api.common.exception.NotFoundException;
 import com.gymflow.api.inventory.Product;
 import com.gymflow.api.inventory.ProductService;
@@ -33,6 +34,7 @@ public class SaleService {
         this.userRepository = userRepository;
     }
 
+    @Auditable(action = "CREATE_SALE")
     @Transactional
     public SaleResponse create(SaleRequest request) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -96,6 +98,7 @@ public class SaleService {
                 .orElseThrow(() -> new NotFoundException("Venta no encontrada: " + id));
     }
 
+    @Auditable(action = "CANCEL_SALE")
     @Transactional
     public void cancel(Long id) {
         Sale sale = getEntity(id);

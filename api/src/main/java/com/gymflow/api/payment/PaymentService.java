@@ -1,5 +1,6 @@
 package com.gymflow.api.payment;
 
+import com.gymflow.api.audit.Auditable;
 import com.gymflow.api.membership.Membership;
 import com.gymflow.api.membership.MembershipService;
 import com.gymflow.api.payment.dto.PaymentRequest;
@@ -20,6 +21,7 @@ public class PaymentService {
         this.membershipService = membershipService;
     }
 
+    @Auditable(action = "CREATE_PAYMENT")
     public PaymentResponse create(PaymentRequest request) {
         Membership membership = membershipService.getEntity(request.membershipId());
 

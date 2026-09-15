@@ -4,6 +4,7 @@ import com.gymflow.api.common.exception.NotFoundException;
 import com.gymflow.api.member.dto.MemberRequest;
 import com.gymflow.api.member.dto.MemberResponse;
 import org.springframework.stereotype.Service;
+import com.gymflow.api.audit.Auditable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -59,6 +60,7 @@ public class MemberService {
         return toResponse(repository.save(member));
     }
 
+    @Auditable(action = "DEACTIVATE_MEMBER")
     public void deactivate(Long id) {
         Member member = getEntity(id);
         member.setStatus(MemberStatus.INACTIVE);
