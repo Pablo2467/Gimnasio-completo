@@ -14,6 +14,23 @@ export function useCreateMembershipPlan() {
   });
 }
 
+export function useUpdateMembershipPlan() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, data }: { id: number; data: MembershipPlanRequest }) =>
+      membershipPlansApi.update(id, data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["membership-plans"] }),
+  });
+}
+
+export function useDeactivateMembershipPlan() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => membershipPlansApi.deactivate(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["membership-plans"] }),
+  });
+}
+
 export function useMemberMemberships(memberId: number) {
   return useQuery({
     queryKey: ["memberships", memberId],

@@ -161,14 +161,10 @@ gimnasio/
 
 ## Roadmap (fuera de alcance por ahora)
 
-Estas funciones se dejaron fuera a propósito para no diluir el foco del proyecto:
+Estas funciones se dejaron fuera a propósito para no diluir el foco del proyecto en su primera versión:
 
 - Asistencia por QR para el ingreso de socios
 - Gestión de entrenadores y asignación de rutinas
 - Reserva de clases grupales
 - Refresh token real (cookie `httpOnly`) — hoy la sesión expira y exige volver a loguearse
 - Snapshot de precio en `Membership` (cobrar lo pactado al contratar, no el precio vigente del plan)
-
-## Licencia
-
-Proyecto personal de portafolio.
