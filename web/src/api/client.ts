@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: import.meta.env.VITE_API_URL ?? "http://localhost:8080",
 });
 
 let authToken: string | null = null;
@@ -20,6 +20,7 @@ client.interceptors.request.use((config) => {
 client.interceptors.response.use(
   (response) => response,
   (error) => {
+    
     if (error.response?.status === 401) {
       // Token vencido o inválido. Como todavía no hay refresh token,
       // la única salida es volver a loguearse.
