@@ -36,6 +36,7 @@ public class ProductService {
                 .price(request.price())
                 .stock(request.stock())
                 .description(request.description())
+                .imageUrl(request.imageUrl())
                 .build();
         return toResponse(repository.save(product));
     }
@@ -47,6 +48,7 @@ public class ProductService {
         product.setPrice(request.price());
         product.setStock(request.stock());
         product.setDescription(request.description());
+        product.setImageUrl(request.imageUrl());
         return toResponse(repository.save(product));
     }
 
@@ -60,6 +62,6 @@ public class ProductService {
 
     private ProductResponse toResponse(Product p) {
         return new ProductResponse(p.getId(), p.getName(), p.getCategory(), p.getPrice(),
-                p.getStock(), p.getDescription());
+                p.getStock(), p.getDescription(), p.getImageUrl());
     }
 }

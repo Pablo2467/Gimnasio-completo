@@ -13,12 +13,14 @@ import { ProductsPage } from "./features/inventory/ProductsPage";
 import { NewSalePage } from "./features/sales/NewSalePage";
 import { SalesListPage } from "./features/sales/SalesListPage";
 import { AppLayout } from "./components/layout/AppLayout";
+import { ToastProvider } from "./components/ui/ToastProvider";
 
 const queryClient = new QueryClient();
 
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <ToastProvider>
       <AuthProvider>
         <BrowserRouter>
           <Routes>
@@ -41,6 +43,7 @@ export default function App() {
           </Routes>
         </BrowserRouter>
       </AuthProvider>
+    </ToastProvider>
     </QueryClientProvider>
   );
 }

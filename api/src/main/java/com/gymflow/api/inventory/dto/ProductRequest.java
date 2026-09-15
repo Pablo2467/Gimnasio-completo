@@ -10,5 +10,6 @@ public record ProductRequest(
         String category,
         @NotNull @PositiveOrZero BigDecimal price,
         @NotNull @PositiveOrZero Integer stock,
-        String description
+        String description,
+        String imageUrl
 ) {}

@@ -30,4 +30,7 @@ public class MembershipPlan {
 
     @Column(nullable = false)
     private boolean active;
+
+    @Column(name = "image_url")
+    private String imageUrl;
 }

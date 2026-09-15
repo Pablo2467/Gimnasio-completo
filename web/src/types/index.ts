@@ -53,6 +53,7 @@ export interface Product {
   price: number;
   stock: number;
   description: string | null;
+  imageUrl: string | null;
 }
 export interface ProductRequest {
   name: string;
@@ -60,6 +61,7 @@ export interface ProductRequest {
   price: number;
   stock: number;
   description?: string;
+  imageUrl?: string;
 }
 
 export type SaleStatus = "COMPLETED" | "CANCELLED";
@@ -112,4 +114,21 @@ export interface DashboardSummary {
   activeMemberships: number;
   revenueThisMonth: number;
   salesToday: number;
+}
+
+export interface MembershipPlan {
+  id: number;
+  name: string;
+  description: string | null;
+  price: number;
+  durationDays: number;
+  imageUrl: string | null;
+  active: boolean;
+}
+export interface MembershipPlanRequest {
+  name: string;
+  description?: string;
+  price: number;
+  durationDays: number;
+  imageUrl?: string;
 }

@@ -1,37 +1,46 @@
-// features/dashboard/DashboardPage.tsx
 import { useDashboardSummary } from "./useDashboard";
-import { useAuth } from "../../auth/AuthContext";
 
-function formatCOP(value: number) {
-  return new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(value);
-}
+const COP = new Intl.NumberFormat("es-CO", {
+  style: "currency",
+  currency: "COP",
+  maximumFractionDigits: 0,
+});
 
 export function DashboardPage() {
-  const { role } = useAuth();
   const { data, isLoading, isError } = useDashboardSummary();
 
-  if (role !== "ADMIN") {
-    return <p className="p-6 text-slate-500">Esta sección es solo para administradores.</p>;
+  if (isLoading) {
+    return <div className="h-28 border border-iron-200 bg-white animate-pulse" />;
   }
 
-  if (isLoading) return <p className="p-6">Cargando...</p>;
-  if (isError || !data) return <p className="p-6 text-red-600">No se pudo cargar el dashboard.</p>;
+  if (isError || !data) {
+    return (
+      <div className="border border-plate-red/30 bg-white px-6 py-8 text-sm">
+        <p className="text-iron-950 font-medium mb-1">No se pudieron cargar las métricas</p>
+        <p className="text-iron-700">Revisa que el servidor esté disponible y vuelve a intentar.</p>
+      </div>
+    );
+  }
 
-  const cards = [
-    { label: "Clientes activos", value: data.activeMembers },
-    { label: "Membresías activas", value: data.activeMemberships },
-    { label: "Ingresos este mes", value: formatCOP(data.revenueThisMonth) },
-    { label: "Ventas hoy", value: data.salesToday },
+  const metrics = [
+    { value: String(data.activeMembers), label: "clientes activos" },
+    { value: String(data.activeMemberships), label: "membresías vigentes" },
+    { value: COP.format(data.revenueThisMonth), label: "ingresos del mes" },
+    { value: String(data.salesToday), label: "ventas de hoy" },
   ];
 
   return (
-    <div className="p-6">
-      <h1 className="text-xl font-semibold mb-6">Dashboard</h1>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {cards.map((c) => (
-          <div key={c.label} className="bg-white border rounded-lg p-4">
-            <p className="text-sm text-slate-500">{c.label}</p>
-            <p className="text-2xl font-semibold mt-1">{c.value}</p>
+    <div>
+      <h1 className="text-2xl font-semibold mb-6">Resumen</h1>
+
+      {/* Una banda con divisores, no cuatro cards con sombra */}
+      <div className="border border-iron-200 bg-white grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-iron-200">
+        {metrics.map((m) => (
+          <div key={m.label} className="px-6 py-7">
+            <p className="font-stamp text-5xl leading-none font-semibold tabular">
+              {m.value}
+            </p>
+            <p className="mt-2 text-sm text-iron-400">{m.label}</p>
           </div>
         ))}
       </div>

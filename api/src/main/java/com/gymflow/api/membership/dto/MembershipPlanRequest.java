@@ -9,5 +9,6 @@ public record MembershipPlanRequest(
         @NotBlank String name,
         String description,
         @NotNull @Positive BigDecimal price,
-        @NotNull @Positive Integer durationDays
+        @NotNull @Positive Integer durationDays,
+        String imageUrl 
 ) {}

@@ -8,5 +8,6 @@ public record MembershipPlanResponse(
         String description,
         BigDecimal price,
         Integer durationDays,
+        String imageUrl,
         boolean active
 ) {}

@@ -1,1 +1,55 @@
 @import "tailwindcss";
+
+@theme {
+  /* Neutros */
+  --color-iron-950: #16181b;
+  --color-iron-700: #3a3e45;
+  --color-iron-400: #8b9199;
+  --color-iron-200: #d9dce0;
+  --color-iron-50: #f4f5f6;
+
+  /* Acento único */
+  --color-plate-blue: #1e4fa8;
+  --color-plate-blue-dark: #19407f;
+
+  /* Estados */
+  --color-plate-green: #1f7a3d;
+  --color-plate-amber: #c98a00;
+  --color-plate-red: #b3332a;
+    --color-plate-yellow: #E8B923;
+  --color-plate-yellow-ink: #16181B;
+
+  /* Tipografía */
+  --font-sans: "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --font-stamp: "Barlow Condensed", "Barlow", sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-iron-50);
+    color: var(--color-iron-950);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Números alineados en columna: crítico para tablas de dinero */
+  table,
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Foco visible y consistente en todo (accesibilidad de teclado) */
+  :focus-visible {
+    outline: 2px solid var(--color-plate-blue);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

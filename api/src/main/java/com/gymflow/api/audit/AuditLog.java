@@ -22,7 +22,7 @@ public class AuditLog {
     private String action;
 
     @Column(name = "performed_by", nullable = false)
-    private String performedBy; // email del usuario autenticado
+    private String performedBy; 
 
     @Column(name = "method_name", nullable = false)
     private String methodName;

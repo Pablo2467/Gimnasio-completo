@@ -1,0 +1,1 @@
+ALTER TABLE membership_plans ADD COLUMN image_url VARCHAR(500);

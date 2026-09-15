@@ -29,4 +29,7 @@ public class Product {
     private Integer stock;
 
     private String description;
+
+    @Column(name = "image_url")
+    private String imageUrl;
 }
