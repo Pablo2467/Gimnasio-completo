@@ -32,4 +32,9 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new ApiError(400, message, LocalDateTime.now()));
     }
+    @ExceptionHandler(org.springframework.dao.DataIntegrityViolationException.class)
+    public ResponseEntity<ApiError> handleIntegrity(org.springframework.dao.DataIntegrityViolationException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+        .body(new ApiError(409, "No se puede completar la operación: el registro está relacionado con otros datos existentes.", LocalDateTime.now()));
+    }
 }

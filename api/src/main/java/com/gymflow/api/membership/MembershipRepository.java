@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface MembershipRepository extends JpaRepository<Membership, Long> {
     List<Membership> findByMemberId(Long memberId);
+    long countByStatus(MembershipStatus status);
 }
