@@ -7,6 +7,14 @@ Sistema de gestión para gimnasios: clientes, membresías, inventario, ventas y 
 **Backend** — Java 21, Spring Boot 3.5, Spring Security (JWT), Spring Data JPA, PostgreSQL, Flyway, springdoc-openapi.
 **Frontend** — React 19, TypeScript, Vite, TanStack Query, React Router, React Hook Form + Zod, Tailwind CSS v4.
 
+## Link demo de la app web
+
+https://gimnasio-completo.vercel.app
+
+**Correo** — admin@gymflow.com
+**Contraseña** — admin123
+
+
 ## Arquitectura
 
 ```
